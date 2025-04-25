@@ -86,7 +86,7 @@ export default function Home() {
       </div>
       {/* section 2 */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-20 border border-amber-700 text-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-20 border border-amber-700 text-start w-full">
         <article className="flex flex-col space-y-2 pb-20 col-span-full md:p-5 py-5">
           <p className="text-lg">optimized checkout forms</p>
           <h2 className="text-4xl font-semibold capitalize">
@@ -116,7 +116,7 @@ export default function Home() {
       </div>
 
       {/* section 3 */}
-      <div className="grid text-start md:grid-cols-2 md:mt-40 mt-14">
+      <div className="grid text-start md:grid-cols-2 md:mt-40 mt-14 w-full">
         <article className="md:p-5 py-5">
           <h2 className="text-4xl font-semibold">ready to track</h2>
           <p className="text-sm mt-2 leading-6">
@@ -142,7 +142,7 @@ export default function Home() {
       </div>
 
       {/* section 4      */}
-      <div className="text-center mt-14 flex flex-col space-y-2 md:p-5 border border-amber-800 my-40 py-32">
+      <div className="text-center mt-14 flex flex-col space-y-2 md:p-5 border border-amber-800 my-40 py-32 w-full">
         <h1 className="text-4xl sm:text-4xl md:text-5xl font-semibold md:leading-12  ">
           Create flexible lending <br /> products.{" "}
           <span className="text-orange-700">With less work.</span>
