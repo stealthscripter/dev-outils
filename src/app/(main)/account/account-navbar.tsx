@@ -22,7 +22,7 @@ export default function AccountNavBar({className}: AccountNavBarProps) {
   }
 
   return (
-    <nav className={`mt-2 border border-amber-700 ${className}`}>
+    <nav className={`mt-2 border border-amber-700 md:w-[80%] sm:w-[90%] w-full mx-auto ${className}`}>
       <ul className="flex space-x-7 text-sm text-gray-700 cursor-pointer flex-wrap">
         {tabs.map((item) => (
           <li

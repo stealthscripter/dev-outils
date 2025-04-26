@@ -125,7 +125,7 @@ const resources = [
 export default function ResourceList() {
   return (
     <>
-      <div className="border border-amber-700 col-span-3 grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 gap-x-7 items-start bg-yellow-50 gap-y-6 md:gap-y-0">
+      <div className="border border-amber-700 col-span-3  grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 gap-x-7 bg-yellow-50 gap-y-6 md:gap-y-5">
         {resources.map((resource) => (
           <div
             className="border border-amber-700 px-2 py-1 bg-yellow-200"

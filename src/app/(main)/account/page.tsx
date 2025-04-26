@@ -4,7 +4,7 @@ import AccountNavBar from "./account-navbar";
 export default async function Page() {
   return (
     <>
-      <div className="border border-amber-700 w-full flex items-start justify-between flex-wrap gap-y-4">
+      <div className="border border-amber-700 w-full flex items-start justify-between flex-wrap gap-y-4 md:w-[80%] sm:w-[90%] mx-auto">
         <div className="flex items-center gap-x-3">
           <div className="border p-2 rounded-full">
             <User strokeWidth={0.5} size={40} />
