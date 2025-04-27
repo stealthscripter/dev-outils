@@ -7,7 +7,7 @@ export default async function Layout({
 }) {
   return (
     <div className="min-h-screen border border-amber-800 items-start justify-start flex flex-col mx-auto max-w-7xl p-5">
-      <NavBar />
+      {/* <NavBar /> */}
       {children}
     </div>
   );
