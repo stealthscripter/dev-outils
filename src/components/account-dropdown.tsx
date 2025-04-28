@@ -24,7 +24,7 @@ export default function AccountDropdown() {
       <DropdownMenuTrigger asChild>
         <button className="flex items-center gap-1.5 focus-visible:ring-0 focus:outline-none outline-none">
           <User size={20} strokeWidth={1.5} />
-          <span className="text-sm underline">outils.dev</span>
+          <span className="text-sm underline hidden md:inline-flex">outils.dev</span>
           <ChevronDown
             strokeWidth={1.5}
             className={`h-4 w-4 transition-transform duration-200 ${
