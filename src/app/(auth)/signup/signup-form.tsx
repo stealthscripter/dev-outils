@@ -1,34 +1,24 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { signUpSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Terminal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { z } from "zod";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 
+import { PasswordInput } from "@/components/password-input";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { PasswordInput } from "@/components/password-input";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 export function SignupForm({
   className,
@@ -50,6 +40,30 @@ export function SignupForm({
 
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
     const { email, password, confirmPassword, fullname } = values;
+    const { data, error } = await authClient.signUp.email(
+      {
+        email, // user email address
+        password,
+        name: fullname, // user display name
+        callbackURL: "/account", // A URL to redirect to after the user verifies their email (optional)
+      },
+      {
+        onRequest: (ctx) => {
+          //show loading
+          setLoading(true);
+        },
+        onSuccess: (ctx) => {
+          //redirect to the dashboard or sign in page
+          router.push("/account");
+        },
+        onError: (ctx) => {
+          // display the error message
+          setError(ctx.error.message);
+          setLoading(false);
+          console.log(data, error);
+        },
+      }
+    );
   }
 
   return (
@@ -62,7 +76,9 @@ export function SignupForm({
     >
       <div>
         <h1 className="text-2xl">Let's Get Started!</h1>
-        <p className="text-sm mt-1">Create an account to access powerful tools</p>
+        <p className="text-sm mt-1">
+          Create an account to access powerful tools
+        </p>
       </div>
       <Form {...form}>
         <form
@@ -135,7 +151,7 @@ export function SignupForm({
             )}
           />
           <Button type="submit" className="rounded-none cursor-pointer">
-            create account
+            {loading ? "loading" : "create account"}
           </Button>
         </form>
       </Form>
@@ -145,7 +161,26 @@ export function SignupForm({
         </span>
       </div>
       <div className="flex gap-2">
-        <button className="group w-full cursor-pointer  space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8688921_inset]  border-gray-200  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50">
+        <button
+          onClick={async () => {
+            await authClient.signIn.social({
+              provider: "google",
+              fetchOptions: {
+                onRequest: (ctx) => {
+                  console.log({ ctx });
+                  toast.loading("Authenticating...");
+                },
+                onSuccess: (ctx) => {
+                  toast.success("Authentication Redirecting...");
+                },
+                onError: (ctx) => {
+                  setError(ctx.error.message);
+                },
+              },
+            });
+          }}
+          className="group w-full cursor-pointer  space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8688921_inset]  border-gray-200  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50"
+        >
           <svg
             className="w-5 h-5"
             viewBox="0 0 48 48"

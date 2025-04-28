@@ -1,7 +1,9 @@
 import { User } from "lucide-react";
 import AccountNavBar from "./account-navbar";
+import { prisma } from "@/lib/prisma";
 
 export default async function Page() {
+ 
   return (
     <>
       <div className="border border-amber-700 w-full flex items-start justify-between flex-wrap gap-y-4 md:w-[80%] sm:w-[90%] mx-auto">
