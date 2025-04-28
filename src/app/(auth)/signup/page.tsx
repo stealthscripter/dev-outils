@@ -4,8 +4,7 @@ export default async function Page() {
   return (
     <div className="border border-amber-700 min-h-screen flex items-center justify-center">
       {/* <!-- SignupForm spans 2 columns starting from column 2 --> */}
-      <SignupForm className="w-100" />
-    
+      <SignupForm className="w-sm" />
     </div>
   );
 }
