@@ -16,14 +16,13 @@ export const auth = betterAuth({
   }),
   session: {
     cookieCache: {
-        enabled: false,  // For Test Purpose
+        enabled: false,
         maxAge: 5 * 60
     }
   },
   emailAndPassword: {
     enabled: true,
     autoSignIn: false,
-    requireEmailVerification: true,
     minPasswordLength: 6,
   },
   socialProviders: {

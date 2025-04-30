@@ -161,26 +161,7 @@ export function SignupForm({
         </span>
       </div>
       <div className="flex gap-2">
-        <button
-          onClick={async () => {
-            await authClient.signIn.social({
-              provider: "google",
-              fetchOptions: {
-                onRequest: (ctx) => {
-                  console.log({ ctx });
-                  toast.loading("Authenticating...");
-                },
-                onSuccess: (ctx) => {
-                  toast.success("Authentication Redirecting...");
-                },
-                onError: (ctx) => {
-                  setError(ctx.error.message);
-                },
-              },
-            });
-          }}
-          className="group w-full cursor-pointer  space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8688921_inset]  border-gray-200  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50"
-        >
+        <button className="group w-full cursor-pointer  space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8688921_inset]  border-gray-200  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50">
           <svg
             className="w-5 h-5"
             viewBox="0 0 48 48"

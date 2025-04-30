@@ -1,9 +1,18 @@
 import { User } from "lucide-react";
 import AccountNavBar from "./account-navbar";
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import LogoutButton from "./logout-button";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
- 
+  const session = await auth.api.getSession({
+    headers: await headers(), // you need to pass the headers object.
+  });
+  if (!session?.user) {
+    redirect("/login");
+  }
   return (
     <>
       <div className="border border-amber-700 w-full flex items-start justify-between flex-wrap gap-y-4 md:w-[80%] sm:w-[90%] mx-auto">
@@ -12,15 +21,13 @@ export default async function Page() {
             <User strokeWidth={0.5} size={40} />
           </div>
           <div>
-            <h1 className="text-lg">test</h1>
-            <p className="text-sm text-gray-500">test@gmail.com</p>
+            <h1 className="text-lg">{session?.user.name}</h1>
+            <p className="text-sm text-gray-500">{session?.user.email}</p>
           </div>
         </div>
 
         {/* logout */}
-        <button className="border border-amber-500 px-2 py-1 text-red-700 cursor-pointer">
-          Logout
-        </button>
+        <LogoutButton />
       </div>
 
       <AccountNavBar className="w-full" />

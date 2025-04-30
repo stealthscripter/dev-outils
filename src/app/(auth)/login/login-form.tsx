@@ -32,16 +32,15 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { PasswordInput } from "@/components/password-input";
 import { Button } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, setIsPending] = useState<boolean>();
   const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -51,9 +50,30 @@ export function LoginForm({
       password: "",
     },
   });
-
-  async function onSubmit(values: z.infer<typeof loginSchema>) {}
-
+  async function onSubmit(values: z.infer<typeof loginSchema>) {
+    await authClient.signIn.email(
+      {
+        email: values.email,
+        password: values.password,
+        callbackURL: "/account",
+      },
+      {
+        onRequest: () => {
+          setIsPending(true);
+        },
+        onSuccess: () => {
+          toast.success("Login Successfully", {
+            description: "Loged in to your account successfully",
+          });
+        },
+        onError: (ctx) => {
+          console.log(ctx);
+          setError(ctx.error.message ?? "something went wrong");
+        },
+      }
+    );
+    setIsPending(false);
+  }
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="rounded-none">
@@ -105,8 +125,12 @@ export function LoginForm({
                   </FormItem>
                 )}
               />
-              <Button disabled={loading} type="submit" className="w-full rounded-none cursor-pointer">
-                {loading ? "loading...." : "Login"}
+              <Button
+                disabled={loading}
+                type="submit"
+                className="w-full rounded-none cursor-pointer"
+              >
+                {isPending ? "Loading..." : "Login"}
               </Button>
             </form>
           </Form>
