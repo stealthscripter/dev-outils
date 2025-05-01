@@ -1,7 +1,7 @@
-import ResourceList from "./resource-list";
+import ResourceItem from "./resource-item";
 import ResourceSidebar from "./resource-sidebar";
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       {/* section 1 */}
@@ -43,7 +43,9 @@ export default async function Page() {
 
         {/* Scrollable list */}
         <div className="md:col-span-3 col-span-full max-h-screen overflow-y-auto p-4">
-          <ResourceList />
+          {/* <ResourceList websites={websites} /> */}
+
+          <ResourceItem />
         </div>
       </div>
     </>
