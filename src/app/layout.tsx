@@ -16,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased font-sans bg-gray-50">
+      <head>
+      <link href="https://api.fontshare.com/v2/css?f[]=quicksand@300,400,500,600,700,1&f[]=general-sans@200,201,300,301,400,401,500,501,600,601,700,701,1,2&display=swap" rel="stylesheet"/>
+      </head>
+      <body className="antialiased font-sans">
         <ReactQueryProvider>
           <ThemeProvider
             attribute="class"

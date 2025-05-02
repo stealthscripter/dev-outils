@@ -9,12 +9,12 @@ export default function NavBar() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="border border-amber-700 min-h-14 w-full p-5">
+    <div className="min-h-14 w-full">
       {/* announcment */}
-      <div className="border border-amber-700 md:flex justify-end sm:flex hidden">
+      <div className="md:flex justify-end sm:flex hidden md:p-5">
         <AccountDropdown />
       </div>
-
+{/* 
       <div className="md:flex items-center justify-between border border-amber-700 p-4">
         <div className="items-center flex ">
           <img
@@ -48,7 +48,7 @@ export default function NavBar() {
             /support
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
