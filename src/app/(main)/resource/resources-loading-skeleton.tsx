@@ -10,20 +10,30 @@ export default function ResourcesLoadingSkeleton() {
   );
 }
 
+export function InitalResourceLoadingSkeleton() {
+  return (
+    <div className="col-span-3 items-center grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 gap-x-7 gap-y-6 md:gap-y-5">
+      <ResourceLoadingSkeleton />
+      <ResourceLoadingSkeleton />
+      <ResourceLoadingSkeleton />
+    </div>
+  );
+}
+
 function ResourceLoadingSkeleton() {
   return (
-    <div className="animate-pulse space-y-3 border border-amber-700 px-2 py-1 bg-yellow-200">
+    <div className="animate-pulse space-y-3 bg-card px-4 py-2">
       {/* upper one */}
-      <div className="border border-amber-700 mb-3 flex items-center justify-end">
+      <div className="mb-3 flex items-center justify-end">
         <Skeleton className="h-4 w-24 rounded" />
       </div>
       {/* details */}
-      <div className="border border-amber-700 space-y-1">
+      <div className="space-y-1">
         <Skeleton className="h-4 w-24 rounded" />
         <Skeleton className="h-4 w-20 rounded" />
       </div>
       {/* tags */}
-      <div className="border border-amber-600 mt-2">
+      <div className="mt-2">
         <Skeleton className="h-4 w-20 rounded" />
       </div>
     </div>

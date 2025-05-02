@@ -31,12 +31,13 @@ export default function ResourceSidebar({
   return (
     <>
       <aside className={className}>
-        <div className="border border-amber-700 ">
-          <ul className="text-sm flex md:flex-col bg-yellow-50 flex-wrap mb-4 gap-x-4 md:gap-x-0 md:gap-y-2 gap-y-4 md:border-l-2 border-amber-700 md:px-5">
+        <div className="">
+          <p className="mb-5 ms-2 text-xl">All Resource</p>
+          <ul className="text-sm flex md:flex-col flex-wrap mb-4 gap-x-4 md:gap-x-0 md:gap-y-2 gap-y-4 md:border-l-1 border-gray-400 md:px-5">
             {categories.map((item) => (
               <li
                 key={item.slug}
-                className={`relative px-1 py-2 cursor-pointer transition-all duration-300 border border-amber-700 md:border-0 ${
+                className={`relative px-1 py-2 cursor-pointer transition-all duration-300 md:border-0 ${
                   activeCategory === item.slug
                     ? "md:ms-4 md:before:absolute md:before:-left-3 md:before:top-1/2 md:before:-translate-y-1/2 md:before:w-1.5 md:before:h-1.5 md:before:bg-amber-500 md:before:rounded-full bg-amber-700 text-white md:bg-transparent md:text-foreground"
                     : ""

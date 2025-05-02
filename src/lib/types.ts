@@ -14,10 +14,12 @@ export const websiteDataInclude = {
     },
 } satisfies Prisma.WebsiteInclude;
 
+// lib/types.ts
 export type WebsiteData = Prisma.WebsiteGetPayload<{
     include: typeof websiteDataInclude
-}>
-
+}> & {
+    isBookmarked: boolean; // Add computed field
+};
 
 export interface websitePage {
     websites: WebsiteData[],

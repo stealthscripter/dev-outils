@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased font-sans">
+      <body className="antialiased font-sans bg-gray-50">
         <ReactQueryProvider>
           <ThemeProvider
             attribute="class"
