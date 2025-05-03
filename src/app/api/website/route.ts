@@ -16,11 +16,11 @@ export async function GET(req: NextRequest) {
       headers: await headers(),
     });
 
-    let categoryId: number | null = null;
+    let categoryId: string | null = null;
 
     if (categorySlug !== "all") {
       const category = await prisma.category.findUnique({
-        where: { slug: categorySlug },
+        where: { slug: categorySlug, },
       });
       if (category) categoryId = category.id;
     }
@@ -30,11 +30,11 @@ export async function GET(req: NextRequest) {
       where: categoryId ? { categoryId } : {},
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
-      cursor: cursor ? { id: Number(cursor) } : undefined,
+      cursor: cursor ? { id: cursor } : undefined,
     });
 
     // Fetch bookmarks for current user if logged in
-    let bookmarkedWebsiteIds: number[] = [];
+    let bookmarkedWebsiteIds: string[] = [];
     if (session?.user) {
       const bookmarks = await prisma.bookmark.findMany({
         where: { userId: session.user.id },

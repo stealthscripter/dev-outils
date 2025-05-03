@@ -5,37 +5,24 @@ export default function Page() {
   return (
     <>
       {/* section 1 */}
-      <div className="w-full">
-        <div className="text-center">
-          <h1 className="md:text-5xl sm:text-4xl text-3xl font-medium dark:text-primary">
-            Resource Hub
-          </h1>
-          <h4 className="md:my-4 my-2 font-light">
-            Ideas, templates, and tools for businesses that are going places
-          </h4>
-          <button className="w-fit mx-auto px-3 py-1.5">
-            Discover Resource
-          </button>
-        </div>
-      </div>
 
       {/* section 2 */}
 
-      <div className="mt-15 w-full">
-        <div className="text-center">
-          <h2 className="md:text-3xl text-2xl  font-normal ">
-            explore all our resources
-          </h2>
-          <p className="font-light mt-1 text-sm md:text-base">
-            Discover a curated collection of tools, guides, and courses to
-            elevate your skills and productivity.
+      <div className="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:mt-5 border border-spans min-h-64 items-center">
+        {/* textdiv */}
+        <div className="md:col-span-2 col-span-full flex flex-col justify-cente px-24 space-y-4">
+          <p className="font-quicksand uppercase text-sm tracking-widest text-muted-foreground">Welcome To</p>
+          <h1 className="text-5xl">Membership Toolbox</h1>
+          <p className="font-quicksand leading-6 text-muted-foreground">
+            The Ultimate List of 3rd Party Tools to Help You Launch and Grow a
+            Membership Business.
           </p>
         </div>
       </div>
 
-      <div className="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:mt-5 min-h-screen items-start">
+      <div className="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:mt-5 min-h-screen items-start border border-spans">
         {/* Sidebar */}
-        <div className="md:col-span-1 col-span-full">
+        <div className="md:col-span-1 col-span-full border border-spans flex justify-center">
           <div className="sticky top-0 p-4">
             <ResourceSidebar />
           </div>

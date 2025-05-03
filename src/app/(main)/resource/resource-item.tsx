@@ -10,6 +10,7 @@ import ResourcesLoadingSkeleton, {
 } from "./resources-loading-skeleton";
 import { useSearchParams } from "next/navigation";
 import BookmarkButton from "@/components/bookmark-button";
+import Image from "next/image";
 
 export default function ResourceItem() {
   const searchParams = useSearchParams();
@@ -57,9 +58,15 @@ export default function ResourceItem() {
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       {websites.map((website) => (
-        <div className="px-4 py-2 bg-card rounded-xl" key={website.title}>
+        <div className="px-4 py-2 font-quicksand bg-card" key={website.name}>
           {/* Upper section */}
-          <div className="mb-3 flex items-center justify-end">
+          <div className="mb-3 relative w-10 h-10 flex justify-between">
+            {/* <Image
+              src="https://jonas.io/resources/img/logos/ionicons.png"
+              alt="Ionicons Logo"
+              fill
+              className="object-contain bg-blend-darken"
+            /> */}
             <BookmarkButton
               websiteId={website.id}
               isBookmarked={website.isBookmarked}
@@ -68,8 +75,8 @@ export default function ResourceItem() {
 
           {/* Website details */}
           <div className="">
-            <h1 className="text-lg font-medium hover:underline w-fit cursor-pointer">
-              {website.title}
+            <h1 className="text-lg font-medium hover:underline w-fit cursor-pointer font-general capitalize">
+              {website.name}
             </h1>
             <p className="text-zinc-500 text-sm leading-5 my-1">
               {website.description}

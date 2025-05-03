@@ -56,13 +56,13 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col space-y-10 w-full">
-        <div className="md:p-5 w-1/2">
+        <div className="md:p-5 md:w-1/2 w-full">
           <h1 className="text-3xl font-semibold uppercase font-general">
             Dev <span>Outils </span> Pack
           </h1>
 
           {/* Responsive description */}
-          <p className="font-quicksand mt-3 leading-6 text-muted-foreground">
+          <p className="font-quicksand mt-3 md:leading-6 leading-5 text-muted-foreground text-sm md:text-base">
             Here to save you from endless googling. whether you're a developer,
             designer, or devOps guru, we've got a treasure chest of tools you’ll
             pretend to use every day. Browse, click, and maybe actually improve
@@ -79,7 +79,7 @@ export default function Home() {
             developer first productivity tools
           </p>
           <h2 className="text-4xl font-semibold capitalize font-general">
-            Embeddable widgets. <br /> Open-source.
+            Embeddable widgets. <br /> <span className="text-spans"> Open-source.</span>
           </h2>
           <p className="text-sm mt-2 w-full md:w-[45%] text-muted-foreground">
             Discover and integrate tools built to save you time—from UI

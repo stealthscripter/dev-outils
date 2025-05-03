@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     remotePatterns: [new URL('https://assets.example.com/account123/**')],
+
+    domains: ['jonas.io'],
+
   },
 };
 

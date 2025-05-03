@@ -1,6 +1,7 @@
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -9,23 +10,22 @@ datasource db {
 model User {
   id            String     @id
   name          String
-  email         String
+  email         String     @unique
   emailVerified Boolean
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
-  sessions      Session[]
   accounts      Account[]
   bookmarks     Bookmark[]
+  sessions      Session[]
 
-  @@unique([email])
   @@map("user")
 }
 
 model Session {
   id        String   @id
   expiresAt DateTime
-  token     String
+  token     String   @unique
   createdAt DateTime
   updatedAt DateTime
   ipAddress String?
@@ -33,7 +33,6 @@ model Session {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([token])
   @@map("session")
 }
 
@@ -42,7 +41,6 @@ model Account {
   accountId             String
   providerId            String
   userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accessToken           String?
   refreshToken          String?
   idToken               String?
@@ -52,6 +50,7 @@ model Account {
   password              String?
   createdAt             DateTime
   updatedAt             DateTime
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("account")
 }
@@ -68,49 +67,50 @@ model Verification {
 }
 
 model Website {
-  id          Int        @id @default(autoincrement())
-  title       String
+  id          String     @id @default(uuid())
+  name        String
   url         String     @unique
   slug        String     @unique
-  imageUrl    String? // optional image
-  description String? // optional description
-  category    Category   @relation(fields: [categoryId], references: [id])
-  categoryId  Int
-  bookmarks   Bookmark[]
-  tags        Tag[]
+  imageUrl    String?
+  description String?
+  iconUrl     String?
+  categoryId  String
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
+  bookmarks   Bookmark[]
+  category    Category   @relation(fields: [categoryId], references: [id])
+  tags        Tag[]      @relation("TagToWebsite")
 
   @@map("website")
 }
 
 model Category {
-  id        Int       @id @default(autoincrement())
+  id        String    @id @default(uuid())
   name      String    @unique
   slug      String    @unique
-  websites  Website[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  websites  Website[]
 
   @@map("category")
 }
 
 model Bookmark {
-  id        Int      @id @default(autoincrement())
-  userId    String // Match User.id type (which is String)
-  user      User     @relation(fields: [userId], references: [id])
-  websiteId Int
-  website   Website  @relation(fields: [websiteId], references: [id])
+  id        String   @id @default(uuid())
+  userId    String
+  websiteId String
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  website   Website  @relation(fields: [websiteId], references: [id])
 
   @@unique([userId, websiteId])
   @@map("bookmark")
 }
 
 model Tag {
-  id       Int       @id @default(autoincrement())
+  id       String    @id @default(uuid())
   name     String    @unique
-  websites Website[]
+  websites Website[] @relation("TagToWebsite")
 
   @@map("tag")
 }

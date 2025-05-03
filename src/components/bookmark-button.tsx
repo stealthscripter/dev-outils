@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 interface BookmarkButtonProps {
-  websiteId: number;
+  websiteId: string;
   isBookmarked: boolean;
 }
 
@@ -82,7 +82,7 @@ export default function BookmarkButton({
         viewBox="0 0 24 24"
         fill={isBookmarked ? "currentColor" : "none"}
         stroke="currentColor"
-        strokeWidth="1.5"
+        strokeWidth="1"
         strokeLinecap="round"
         strokeLinejoin="round"
       >

@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
 
         const { websiteId } = await req.json();
 
-        if (typeof websiteId !== "number") {
+        if (typeof websiteId !== "string") {
             return Response.json({ error: "Invalid website ID" }, { status: 400 });
         }
 
