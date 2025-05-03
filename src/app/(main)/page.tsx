@@ -1,4 +1,4 @@
-// pages/index.js
+import { FeaturesSectionDemo } from "@/components/aceternity/feature-section";
 import {
   Accordion,
   AccordionContent,
@@ -7,27 +7,27 @@ import {
 } from "@/components/ui/accordion";
 const articles = [
   {
-    title: "Sell globally with Stripe Tax",
+    title: "Boost productivity with the right tools",
     content:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus similique unde voluptatibus obcaecati repellat totam exercitationem quod magnam aspernatur fugiat!",
-    styles: ""
+      "Access a wide range of tools to simplify development, design, and deployment. Every tool is selected to solve real-world problems efficiently.",
+    styles: "",
   },
   {
     title: "Expand your reach with new payment options",
     content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi adipisci tenetur dolorum placeat dolorem perspiciatis alias necessitatibus itaque fuga maiores.",
+      "Organize and bookmark your favorite tools in one place. Find what you need fast and stay focused on what matters most.",
     styles: "",
   },
   {
-    title: "Secure transactions with built-in fraud protection",
+    title: "Secure and reliable resources",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem temporibus quia necessitatibus modi voluptate. Cumque, laboriosam.",
+      "Each tool is reviewed for performance, reliability, and security. Use only trusted resources to power your projects.",
     styles: "",
   },
   {
-    title: "Automate tax collection and compliance",
+    title: "Keep evolving with the industry",
     content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos odio architecto voluptatem quidem praesentium optio!",
+      "Stay ahead with constantly updated tools and frameworks. Keep your tech stack modern and your skills sharp.",
     styles: "",
   },
 ];
@@ -75,21 +75,19 @@ export default function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 mt-20 text-start w-full font-quicksand">
         <article className="flex flex-col space-y-2 pb-20 col-span-full md:p-5 py-5">
-          <p className="text-lg text-muted-foreground">
-            optimized checkout forms
+          <p className="text-lg text-muted-foreground capitalize">
+            developer first productivity tools
           </p>
           <h2 className="text-4xl font-semibold capitalize font-general">
-            embeds. Pop-ups. <br /> payments links.
+            Embeddable widgets. <br /> Open-source.
           </h2>
           <p className="text-sm mt-2 w-full md:w-[45%] text-muted-foreground">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Perspiciatis, consectetur voluptatum! Asperiores, officia voluptatem
-            atque dolores quod consequatur in doloribus.
+            Discover and integrate tools built to save you time—from UI
+            components to deployment helpers—so you can focus on building.
           </p>
           <p className="text-sm w-full md:w-[45%] text-muted-foreground">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus
-            similique unde voluptatibus obcaecati repellat totam exercitationem
-            quod magnam aspernatur fugiat!
+            Everything is open source and community-powered, helping you launch
+            faster and stay in control of your workflow.
           </p>
         </article>
 
@@ -110,13 +108,12 @@ export default function Home() {
       <div className="grid text-start md:grid-cols-2 md:mt-40 mt-14 w-full font-quicksand">
         <article className="md:p-5 py-5">
           <h2 className="text-4xl font-semibold font-general">
-            ready to track
+            Essential Tools for Every Developer
           </h2>
           <p className="text-sm mt-2 leading-6 text-muted-foreground">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia saepe
-            impedit itaque aliquid? Iusto quasi reiciendis eveniet ullam,
-            perspiciatis est, mollitia sunt sapiente nesciunt, assumenda
-            expedita facilis beatae laboriosam.
+            A carefully curated selection of essential tools for developers,
+            designers, and DevOps professionals. Explore, organize, and easily
+            access the best resources to enhance your workflow and productivity.
           </p>
         </article>
 
@@ -138,14 +135,20 @@ export default function Home() {
 
       {/* section 4      */}
       <div className="text-center mt-14 flex flex-col space-y-2 md:p-5 my-40 py-32 w-full">
-        <h1 className="text-4xl sm:text-4xl md:text-5xl font-semibold md:leading-12 font-general">
-          Create flexible lending <br /> products.{" "}
-          <span className="text-spans">With less work.</span>
+        <h1 className="text-4xl sm:text-4xl md:text-5xl font-semibold md:leading-12 font-general capitalize">
+          Discover essential <br />
+          <span className="text-spans">dev outils </span>
+          in one place.
         </h1>
-        <p className="mt-3 text-lg md:text-xl font-quicksand text-muted-foreground">
-          Purpose built for developers, our modern, low-code API lets <br /> you
-          launch fast and scale with ease.{" "}
+        <p className="mt-3 md:text-lg font-quicksand text-muted-foreground">
+          Curated for professionals, our platform brings together the best tools
+          to <br />
+          enhance your workflow and boost productivity with ease.
         </p>
+      </div>
+
+      <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute z-1 top-11/12 left-16 -translate-x-1/2 -translate-y-1/2 blur-[250px]">
+
       </div>
     </>
   );
