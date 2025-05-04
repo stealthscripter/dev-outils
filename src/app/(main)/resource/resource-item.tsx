@@ -5,6 +5,7 @@ import kyInstance from "@/lib/ky";
 import { websitePage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Bookmark } from "lucide-react";
+import ionicon from "../../../../public/icons/ionicon.png";
 import ResourcesLoadingSkeleton, {
   InitalResourceLoadingSkeleton,
 } from "./resources-loading-skeleton";
@@ -49,7 +50,7 @@ export default function ResourceItem() {
   }
 
   if (websites.length === 0) {
-    return <p className="flex">There are no websites in this category</p>;
+    return <p className="flex font-quicksand text-muted-foreground">There are no websites in this category</p>;
   }
 
   return (
@@ -58,15 +59,17 @@ export default function ResourceItem() {
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       {websites.map((website) => (
-        <div className="px-4 py-2 font-quicksand bg-card" key={website.name}>
+        <div className="p-4 rounded-sm font-quicksand dark:border border-zinc-800" key={website.name}>
           {/* Upper section */}
-          <div className="mb-3 relative w-10 h-10 flex justify-between">
-            {/* <Image
-              src="https://jonas.io/resources/img/logos/ionicons.png"
-              alt="Ionicons Logo"
-              fill
-              className="object-contain bg-blend-darken"
-            /> */}
+          <div className="mb-3 flex justify-between">
+            <div className="size-10 relative">
+              <Image
+                src={ionicon}
+                alt="Ionicons Logo"
+                fill
+                className="object-cover"
+              />
+            </div>
             <BookmarkButton
               websiteId={website.id}
               isBookmarked={website.isBookmarked}

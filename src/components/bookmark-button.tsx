@@ -80,9 +80,9 @@ export default function BookmarkButton({
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        fill={isBookmarked ? "currentColor" : "none"}
-        stroke="currentColor"
-        strokeWidth="1"
+        fill={isBookmarked ? "#a963ff" : "none"}
+        stroke="#a963ff"
+        strokeWidth="0.7"
         strokeLinecap="round"
         strokeLinejoin="round"
       >

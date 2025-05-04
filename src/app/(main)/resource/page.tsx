@@ -8,7 +8,7 @@ export default function Page() {
 
       {/* section 2 */}
 
-      <div className="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:mt-5 border border-spans min-h-64 items-center">
+      <div className="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:mt-5 min-h-64 items-center">
         {/* textdiv */}
         <div className="md:col-span-2 col-span-full flex flex-col justify-cente px-24 space-y-4">
           <p className="font-quicksand uppercase text-sm tracking-widest text-muted-foreground">Welcome To</p>
@@ -20,9 +20,9 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:mt-5 min-h-screen items-start border border-spans">
+      <div className="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:mt-5 min-h-screen items-start">
         {/* Sidebar */}
-        <div className="md:col-span-1 col-span-full border border-spans flex justify-center">
+        <div className="md:col-span-1 col-span-full flex justify-center">
           <div className="sticky top-0 p-4">
             <ResourceSidebar />
           </div>
