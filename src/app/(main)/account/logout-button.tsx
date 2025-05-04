@@ -18,7 +18,6 @@ export default function LogoutButton() {
           router.push("/login");
         },
         onRequest: (ctx) => {
-          toast.loading("Logging out...");
           setLoading(true);
         },
         onResponse: (ctx) => {
@@ -35,7 +34,7 @@ export default function LogoutButton() {
         queryClient.clear();
         handleLogout();
       }}
-      className="border border-amber-500 px-2 py-1 text-red-700 cursor-pointer"
+      className="border border-spans px-3 py-1 cursor-pointer font-general font-medium"
     >
       {loading ? "Logging out..." : "Log out"}
     </button>

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { signUpSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/form";
 import { authClient } from "@/lib/auth-client";
 import { Terminal } from "lucide-react";
+import { toast } from "sonner";
 
 export function SignupForm({
   className,
@@ -71,7 +72,7 @@ export function SignupForm({
           setLoading(true);
         },
         onSuccess: (ctx) => {
-          router.push("/account");
+          // router.push("/account");
         },
         onError: (ctx) => {
           // Clear any existing timeout
@@ -96,7 +97,7 @@ export function SignupForm({
 
   return (
     <div className={cn("flex flex-col", className)} {...props}>
-      <Card className="rounded-none border border-zinc-800 bg-zinc-900 font-quicksand space-y-3">
+      <Card className="rounded-none border-none dark:bg-zinc-900 font-quicksand space-y-3">
         <CardHeader>
           <CardTitle>Get started</CardTitle>
           <CardDescription>
@@ -191,12 +192,31 @@ export function SignupForm({
               Or continue with
             </span>
           </div>
-          <div className="flex gap-2">
-            <button className="group w-full cursor-pointer  space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8688921_inset]  border-gray-200  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50">
+          <div className="flex my-3 gap-2">
+            <button
+              onClick={async () => {
+                await authClient.signIn.social({
+                  provider: "google",
+                  fetchOptions: {
+                    onRequest: (ctx) => {
+                      toast.loading("Authenticating...");
+                    },
+                    onSuccess: (ctx) => {
+                      toast.success("Authentication Redirecting...");
+                    },
+                    onError: (ctx) => {
+                      setError(ctx.error.message);
+                    },
+                  },
+                });
+              }}
+              className="group cursor-pointer w-full space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8688921_inset]  border-white/10  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50"
+            >
               <svg
                 className="w-5 h-5"
                 viewBox="0 0 48 48"
                 fill="none"
+                fillRule="evenodd"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <g clipPath="url(#clip0_17_40)">
@@ -223,10 +243,27 @@ export function SignupForm({
                   </clipPath>
                 </defs>
               </svg>
-              {/* Continue with Google */}
             </button>
 
-            <button className="group w-full cursor-pointer  space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8686f_inset]  border-gray-200  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50">
+            <button
+              onClick={async () => {
+                await authClient.signIn.social({
+                  provider: "github",
+                  fetchOptions: {
+                    onRequest: (ctx) => {
+                      toast.loading("Authenticating...");
+                    },
+                    onSuccess: (ctx) => {
+                      toast.success("Authentication Redirecting...");
+                    },
+                    onError: (ctx) => {
+                      setError(ctx.error.message);
+                    },
+                  },
+                });
+              }}
+              className="group w-full cursor-pointer  space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8686f_inset]  border-white/10  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50"
+            >
               <svg
                 className="w-5 h-5"
                 viewBox="0 0 48 48"
@@ -275,14 +312,13 @@ export function SignupForm({
                   </clipPath>
                 </defs>
               </svg>
-              {/* Continue with Github */}
             </button>
           </div>
           <div className="mt-4 text-center text-sm text-muted-foreground">
             Already have an account?{" "}
             <a
               href="/login"
-              className="underline underline-offset-4 hover:text-white duration-200"
+              className="underline underline-offset-4 hover:text-foreground duration-200"
             >
               Login
             </a>

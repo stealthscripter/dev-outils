@@ -100,7 +100,7 @@ export function LoginForm({
   }
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="rounded-none border border-zinc-800 bg-zinc-900 font-quicksand">
+      <Card className="rounded-none border-none dark:bg-zinc-900 font-quicksand">
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
           <CardDescription>
@@ -165,7 +165,25 @@ export function LoginForm({
             </span>
           </div>
           <div className="flex my-3 gap-2">
-            <button className="group cursor-pointer w-full space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8688921_inset]  border-white/10  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50">
+            <button
+              onClick={async () => {
+                await authClient.signIn.social({
+                  provider: "google",
+                  fetchOptions: {
+                    onRequest: (ctx) => {
+                      toast.loading("Authenticating...");
+                    },
+                    onSuccess: (ctx) => {
+                      toast.success("Authentication Redirecting...");
+                    },
+                    onError: (ctx) => {
+                      setError(ctx.error.message);
+                    },
+                  },
+                });
+              }}
+              className="group cursor-pointer w-full space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8688921_inset]  border-white/10  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50"
+            >
               <svg
                 className="w-5 h-5"
                 viewBox="0 0 48 48"
@@ -199,7 +217,25 @@ export function LoginForm({
               </svg>
             </button>
 
-            <button className="group w-full cursor-pointer  space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8686f_inset]  border-white/10  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50">
+            <button
+              onClick={async () => {
+                await authClient.signIn.social({
+                  provider: "github",
+                  fetchOptions: {
+                    onRequest: (ctx) => {
+                      toast.loading("Authenticating...");
+                    },
+                    onSuccess: (ctx) => {
+                      toast.success("Authentication Redirecting...");
+                    },
+                    onError: (ctx) => {
+                      setError(ctx.error.message);
+                    },
+                  },
+                });
+              }}
+              className="group w-full cursor-pointer  space-x-1 py-3 flex transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#8686f_inset]  border-white/10  items-center justify-center border rounded-lg hover:bg-transparent/20 duration-150 active:bg-transparent/50"
+            >
               <svg
                 className="w-5 h-5"
                 viewBox="0 0 48 48"
@@ -254,7 +290,7 @@ export function LoginForm({
             Don&apos;t have an account?{" "}
             <a
               href="/signup"
-              className="underline underline-offset-4 hover:text-white duration-200"
+              className="underline underline-offset-4 hover:text-foreground duration-200"
             >
               Sign up
             </a>

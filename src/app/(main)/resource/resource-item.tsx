@@ -12,6 +12,7 @@ import ResourcesLoadingSkeleton, {
 import { useSearchParams } from "next/navigation";
 import BookmarkButton from "@/components/bookmark-button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ResourceItem() {
   const searchParams = useSearchParams();
@@ -78,9 +79,9 @@ export default function ResourceItem() {
 
           {/* Website details */}
           <div className="">
-            <h1 className="text-lg font-medium hover:underline w-fit cursor-pointer font-general capitalize">
+            <Link href={`resource/${website.slug}`} className="text-lg font-medium hover:underline w-fit cursor-pointer font-general capitalize">
               {website.name}
-            </h1>
+            </Link>
             <p className="text-zinc-500 text-sm leading-5 my-1">
               {website.description}
             </p>

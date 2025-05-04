@@ -22,15 +22,15 @@ export default function AccountNavBar({className}: AccountNavBarProps) {
   }
 
   return (
-    <nav className={`mt-2 border border-amber-700 md:w-[80%] sm:w-[90%] w-full mx-auto ${className}`}>
-      <ul className="flex space-x-7 text-sm text-gray-700 cursor-pointer flex-wrap">
+    <nav className={`border border-spans w-full font-general mx-auto ${className}`}>
+      <ul className="flex space-x-7 cursor-pointer flex-wrap">
         {tabs.map((item) => (
           <li
             key={item.slug}
             className={`relative px-1 py-2 cursor-pointer transition-all duration-300 ${
               activeTab === item.slug
-                ? "text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-amber-500"
-                : "text-gray-500"
+                ? "after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-spans"
+                : "text-muted-foreground"
             }`}
             onClick={() => handleFilter(item.slug)}
           >
