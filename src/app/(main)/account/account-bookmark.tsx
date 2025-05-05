@@ -1,62 +1,57 @@
+// src/components/account-bookmark.tsx
 "use client";
-import BookmarkCard from "@/components/bookmark-card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useBookmarks } from "@/hooks/use-bookmark";
-import { authClient } from "@/lib/auth-client";
-import kyInstance from "@/lib/ky";
-import { useQuery } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
 
-interface Website {
+import { useQuery } from "@tanstack/react-query";
+import kyInstance from "@/lib/ky";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
+import BookmarkCard from "@/components/bookmark-card";
+
+export interface Website {
   id: string;
   name: string;
   url: string;
   description: string | null;
   imageUrl: string | null;
   iconUrl: string | null;
-  category: {
-    name: string;
-  };
-  tags: {
-    name: string;
-  }[];
+  category: { name: string };
+  tags: { name: string }[];
 }
 
 export interface Bookmark {
   website: Website;
 }
 
-export function AccountBookmark() {
-  const { data: session } = authClient.useSession();
-  const userId = session?.user?.id;
-
+export function AccountBookmark({ userId }: { userId: string }) {
   const { data, isLoading, isError, error } = useQuery<Bookmark[]>({
     queryKey: ["user-bookmarks", userId],
-    queryFn: () => kyInstance.get(`/api/bookmark`).json(),
+    queryFn: () => kyInstance.get("/api/bookmark").json(),
+    enabled: !!userId,
+    refetchOnMount: true, // Ensure query runs even if cached
   });
+
+  // Optional: Log query state for debugging
+  useEffect(() => {
+    console.log("Query triggered with userId:", userId);
+  }, [userId]);
 
   if (isLoading) {
     return (
       <div className="mt-4 grid grid-cols-4 gap-x-6 gap-y-1">
+        {/* Skeleton loading UI */}
         <div className="col-span-full">
-          <Skeleton className="h-4 w-40"  />
+          <Skeleton className="h-4 w-40" />
         </div>
-        <div className="mt-2 flex justify-between items-start p-3 gap-x-6">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="flex justify-between items-start p-3 font-quicksand dark:border border-zinc-800"
-            >
-              <div className="flex items-center space-x-2">
-                <Skeleton className="size-8" />
-                <div className="space-y-1">
-                  <Skeleton className="h-4 w-32" />
-                  <Skeleton className="h-3 w-24" />
-                </div>
-              </div>
+        {[...Array(4)].map((_, i) => (
+          <div key={i} className="flex items-center space-x-2 p-3">
+            <Skeleton className="size-8" />
+            <div className="space-y-1">
+              <Skeleton className="h-4 w-32" />
+              <Skeleton className="h-3 w-24" />
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     );
   }

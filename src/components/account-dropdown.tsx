@@ -11,6 +11,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { auth } from "@/lib/auth";
+import { authClient } from "@/lib/auth-client";
 import {
   ArrowRight,
   Check,
@@ -21,19 +23,34 @@ import {
   User,
 } from "lucide-react";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function AccountDropdown() {
   const [open, setOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
+
+  const { data: session } = authClient.useSession();
+
+  let displayTheme =
+    theme === "system" ? "system" : theme === "dark" ? "dark" : "light";
+
+  // Determine which icon to show
+  let IconComponent = Sun; // Default
+
+  if (theme === "system") {
+    IconComponent = resolvedTheme === "dark" ? Moon : Sun;
+  } else {
+    IconComponent = theme === "dark" ? Moon : Sun;
+  }
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
-        <button className="flex hover:underline cursor-pointer focus-within:underline items-center gap-1.5 focus-visible:ring-0 focus:outline-none outline-none text-xs">
+        <button className="flex hover:underline font-quicksand cursor-pointer focus-within:underline items-center gap-1.5 focus-visible:ring-0 focus:outline-none outline-none text-xs">
           <User size={24} strokeWidth={1.5} />
-          <span className="text-base hidden md:inline-flex">
-            outils.dev
+          <span className="text-base hidden md:inline-flex lowercase">
+            {session?.user.name || "outils.dev"}
           </span>
           <ChevronDown
             strokeWidth={1.5}
@@ -44,25 +61,27 @@ export default function AccountDropdown() {
         </button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="rounded-none mt-2 focus-visible:ring-0 focus:outline-none outline-none text-xs">
-        <DropdownMenuItem className="py-1 px-2">Resource</DropdownMenuItem>
-        <DropdownMenuItem className="py-1 px-2">Library</DropdownMenuItem>
-        <DropdownMenuItem className="py-1 px-2">Newsletter</DropdownMenuItem>
-        <DropdownMenuItem className="py-1 px-2">My Profile</DropdownMenuItem>
+      <DropdownMenuContent className="rounded-none font-quicksand mt-2 focus-visible:ring-0 focus:outline-none outline-none text-xs border-none dark:bg-zinc-900">
+        <DropdownMenuItem className="py-1 px-2" asChild>
+          <Link href={"/resource"}>resource</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="py-1 px-2" asChild>
+          <Link href={"/account"}>account</Link>
+        </DropdownMenuItem>
 
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger className="text-xs flex items-center gap-2 py-1 px-2">
-            <Monitor className="mr-1 size-4" />
-            Theme
+          <DropdownMenuSubTrigger className="text-sm flex items-center gap-2 py-1 px-2">
+            <IconComponent className="mr-1 size-4" />
+            {displayTheme}
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
-            <DropdownMenuSubContent>
+            <DropdownMenuSubContent className="border-none dark:bg-zinc-900 font-quicksand">
               <DropdownMenuItem
                 className="text-xs flex items-center gap-2 py-1 px-2"
                 onClick={() => setTheme("system")}
               >
                 <Monitor className="mr-2 size-4" />
-                System default
+                System
                 {theme === "system" && <Check className="ms-2 size-4" />}
               </DropdownMenuItem>
               <DropdownMenuItem
@@ -84,10 +103,6 @@ export default function AccountDropdown() {
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
         </DropdownMenuSub>
-
-        <DropdownMenuItem className="py-1 px-2 flex items-center gap-2">
-          <span>Login</span> <ArrowRight />
-        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
