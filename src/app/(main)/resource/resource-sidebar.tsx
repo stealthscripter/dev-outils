@@ -37,7 +37,7 @@ export default function ResourceSidebar({
                 key={item.slug}
                 className={`relative md:px-1 py-2 cursor-pointer transition-all duration-300 md:border-0 ${
                   activeCategory === item.slug
-                    ? "md:ms-4 md:before:absolute md:before:-left-3 md:before:top-1/2 md:before:-translate-y-1/2 md:before:w-2 md:before:h-2 md:before:bg-spans md:before:rounded-full bg- text-white md:bg-transparent md:text-foreground"
+                    ? "md:ms-4 md:before:absolute md:before:-left-3 md:before:top-1/2 md:before:-translate-y-1/2 md:before:w-2 md:before:h-2 md:before:bg-spans md:before:rounded-full bg- text-white md:bg-transparent md:text-foreground bg-spans px-2 md:px-0"
                     : ""
                 }`}
                 onClick={() => handleFilter(item.slug)}

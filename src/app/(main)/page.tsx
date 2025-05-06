@@ -54,10 +54,10 @@ const accordionItems = [
 
 export default function Home() {
   return (
-    <div className="relative">
-      <div className="flex flex-col space-y-10 w-full">
+    <div className="relative md:px-8 px-5">
+      <div className="flex flex-col space-y-10 w-full md:mt-10 mt-10">
         <div className="md:p-5 md:w-1/2 w-full">
-          <h1 className="text-3xl font-semibold uppercase font-general">
+          <h1 className="md:text-4xl text-3xl font-semibold uppercase font-general">
             Dev <span>Outils </span> Pack
           </h1>
 
@@ -135,8 +135,8 @@ export default function Home() {
       </div>
 
       {/* section 4      */}
-      <div className="text-center mt-14 flex flex-col space-y-2 md:p-5 my-40 py-32 w-full">
-        <h1 className="text-4xl sm:text-4xl md:text-5xl font-semibold md:leading-12 font-general capitalize">
+      <div className="text-center md:mt-14 flex flex-col space-y-2 md:my-40 md:py-32 py-20 w-full">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold md:leading-12 font-general capitalize">
           Discover essential <br />
           <span className="text-spans">dev outils </span>
           in one place.
@@ -147,7 +147,7 @@ export default function Home() {
           enhance your workflow and boost productivity with ease.
         </p>
       </div>
-      <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 top-0 left-16 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
+      <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full md:absolute hidden -z-1 top-0 left-16 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
       <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 top-0 right-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
       <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
       <div className="circlePosition w-[800px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 bottom-0 right-0 dark:blur-[250px] blur-[180px]" />

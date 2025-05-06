@@ -11,7 +11,7 @@ export default function NavBar() {
   return (
     <div className="min-h-14 w-full">
       {/* announcment */}
-      <div className="md:flex justify-end flex md:p-5">
+      <div className="md:flex justify-end flex md:px-10 py-8 px-5">
         <AccountDropdown />
       </div>
     </div>

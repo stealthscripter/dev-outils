@@ -51,21 +51,28 @@ export default function ResourceItem() {
   }
 
   if (websites.length === 0) {
-    return <p className="flex font-quicksand text-muted-foreground">There are no websites in this category</p>;
+    return (
+      <p className="flex font-quicksand text-muted-foreground">
+        There are no websites in this category
+      </p>
+    );
   }
 
   return (
     <InfiniteScrollContainer
-      className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6 md:gap-y-5 items-center"
+      className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-x-4 gap-y-6 md:gap-y-5 items-center"
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       {websites.map((website) => (
-        <div className="p-4 rounded-sm font-quicksand dark:border dark:border-zinc-800 border border-zinc-200" key={website.name}>
+        <div
+          className="p-4 rounded-sm font-quicksand dark:border dark:border-zinc-800 border border-zinc-200"
+          key={website.name}
+        >
           {/* Upper section */}
           <div className="mb-3 flex justify-between">
             <div className="size-10 relative">
               <Image
-                src={ionicon}
+                src={website.iconUrl || ionicon}
                 alt="Ionicons Logo"
                 fill
                 className="object-cover"
@@ -79,7 +86,10 @@ export default function ResourceItem() {
 
           {/* Website details */}
           <div className="">
-            <Link href={`resource/${website.slug}`} className="text-lg font-medium hover:underline w-fit cursor-pointer font-general capitalize">
+            <Link
+              href={`resource/${website.slug}`}
+              className="text-lg font-medium hover:underline w-fit cursor-pointer font-general capitalize"
+            >
               {website.name}
             </Link>
             <p className="text-zinc-500 text-sm leading-5 my-1">

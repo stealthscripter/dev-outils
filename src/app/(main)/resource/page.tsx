@@ -5,13 +5,13 @@ export default function Page() {
   return (
     <div className="relative">
 
-      <div className="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:mt-5 min-h-64 items-center">
+      <div className="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:mt-5 min-h-64 items-center px-5 md:px-0">
         {/* textdiv */}
         <div className="md:col-span-2 col-span-full flex flex-col justify-cente md:px-24 space-y-4">
           <p className="font-quicksand uppercase text-sm tracking-widest text-muted-foreground">
             Welcome To
           </p>
-          <h1 className="text-5xl">Developers Toolbox</h1>
+          <h1 className="text-4xl md:text-5xl">Developers <br/> Toolbox</h1>
           <p className="font-quicksand leading-6 text-muted-foreground">
             The Ultimate List of 3rd-Party Tools to Instantly Improve Your
             Developer Workflow
@@ -19,7 +19,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="w-full md:mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 items-start md:min-h-screen">
+      <div className="w-full md:mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 items-start md:min-h-screen md:px-0 px-5">
         {/* Sidebar */}
         <div className="md:col-span-1 col-span-full flex md:justify-center">
           <div className="sticky top-0 pt-4">

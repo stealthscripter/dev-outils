@@ -1,6 +1,5 @@
 // src/components/account-bookmark.tsx
 "use client";
-
 import BookmarkCard from "@/components/bookmark-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import kyInstance from "@/lib/ky";
@@ -37,7 +36,7 @@ export function AccountBookmark({ userId }: { userId: string }) {
 
   if (isLoading) {
     return (
-      <div className="mt-4 grid grid-cols-4 gap-x-6 gap-y-1">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-1">
         {/* Skeleton loading UI */}
         <div className="col-span-full">
           <Skeleton className="h-4 w-40" />
@@ -59,19 +58,20 @@ export function AccountBookmark({ userId }: { userId: string }) {
     return <p className="text-destructive">Error: {error.message}</p>;
   }
 
-  if (!data || data.length === 0) {
-    return <p>No bookmarks found.</p>;
+  if (!data || !data.length) {
+    return <p className="text-muted-foreground text-center mt-15 font-quicksand">No bookmarks found.</p>;
   }
 
   return (
-    <div className="mt-4 grid grid-cols-4 gap-x-6 gap-y-1 font-quicksand">
-      <h1 className="text-muted-foreground col-span-full">Websites</h1>
+    <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-1 font-quicksand">
+      <h1 className="text-muted-foreground col-span-full md:text-base text-sm">Websites</h1>
       {data.map((bookmark, index) => (
         <BookmarkCard
           key={index}
           title={bookmark.website.name}
           url={bookmark.website.url}
           image_url={bookmark.website.imageUrl}
+          iconUrl={bookmark.website.iconUrl}
         />
       ))}
     </div>
