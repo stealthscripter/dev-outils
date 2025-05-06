@@ -22,23 +22,23 @@ export function InitalResourceLoadingSkeleton() {
 
 function ResourceLoadingSkeleton() {
   return (
-    <div className="animate-pulse p-4 rounded-sm font-quicksand border border-zinc-800 space-y-3">
+    <div className="animate-pulse p-4 rounded-sm font-quicksand border dark:border-zinc-800 border-zinc-200 space-y-3">
       {/* Upper section */}
       <div className="mb-3 flex justify-between items-center">
-        <div className="size-10 rounded bg-zinc-800" />
-        <div className="h-4 w-6 rounded bg-zinc-800" />
+        <Skeleton className="size-10 rounded" />
+        <Skeleton className="h-4 w-6 rounded" />
       </div>
 
       {/* Website details */}
       <div className="space-y-2">
-        <div className="h-4 w-36 rounded bg-zinc-800" />
-        <div className="h-4 w-52 rounded bg-zinc-800" />
+        <Skeleton className="h-4 w-36 rounded" />
+        <Skeleton className="h-4 w-52 rounded" />
       </div>
 
       {/* Tags */}
       <div className="mt-2 flex gap-2">
-        <div className="h-4 w-16 rounded bg-zinc-800" />
-        <div className="h-4 w-12 rounded bg-zinc-800" />
+        <Skeleton className="h-4 w-16 rounded" />
+        <Skeleton className="h-4 w-12 rounded" />
       </div>
     </div>
   );

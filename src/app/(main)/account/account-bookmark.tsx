@@ -1,12 +1,11 @@
 // src/components/account-bookmark.tsx
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import kyInstance from "@/lib/ky";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Loader2 } from "lucide-react";
-import { useEffect } from "react";
 import BookmarkCard from "@/components/bookmark-card";
+import { Skeleton } from "@/components/ui/skeleton";
+import kyInstance from "@/lib/ky";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 export interface Website {
   id: string;

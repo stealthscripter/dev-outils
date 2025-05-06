@@ -18,7 +18,7 @@ export default async function Page({
   return (
     <>
       {/* Header and logout button */}
-      <div className="w-full border px-72 flex justify-between items-center">
+      <div className="w-full px-72 flex justify-between items-center">
         <div className="flex items-center gap-x-3">
           <div>
             <h1 className="text-3xl font-semibold">{session.user.name}</h1>
@@ -30,14 +30,14 @@ export default async function Page({
         <LogoutButton />
       </div>
 
-      <div className="w-full border px-72 mt-8">
+      <div className="w-full px-72 mt-8">
         <AccountNavBar />
         {tab === "bookmarks" ? (
           <AccountBookmark userId={session.user.id} key={tab} />
         ) : null}
 
         {tab === "saved" ? (
-          <div className="mt-4 text-center font-quicksand">
+          <div className="mt-10 text-center font-quicksand">
             <h1 className="text-muted-foreground">
               A saved website feature will be introduced soon
             </h1>

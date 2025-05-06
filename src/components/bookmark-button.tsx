@@ -1,6 +1,6 @@
-// components/BookmarkButton.tsx
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import kyInstance from "@/lib/ky";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
@@ -17,8 +17,9 @@ export default function BookmarkButton({
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
   const category = searchParams.get("category") || "all";
-
   const queryKey = ["website-feed", "for-you", category];
+
+  const { data: session } = authClient.useSession(); // Get session status
 
   const { mutate } = useMutation({
     mutationFn: () =>
@@ -31,13 +32,10 @@ export default function BookmarkButton({
           }),
 
     onMutate: async () => {
-      // Cancel ongoing queries to avoid race conditions
       await queryClient.cancelQueries({ queryKey });
 
-      // Snapshot of previous data
       const previousData = queryClient.getQueryData<any>(queryKey);
 
-      // Optimistically update the cache
       queryClient.setQueryData(queryKey, (oldData: any) => {
         if (!oldData) return oldData;
 
@@ -58,20 +56,28 @@ export default function BookmarkButton({
     },
 
     onError(error, variables, context) {
-      // Rollback to previous data
       queryClient.setQueryData(queryKey, context?.previousData);
       toast.error("Something went wrong. Please try again.");
     },
 
     onSettled: () => {
-      // Always refetch to ensure data consistency
       queryClient.invalidateQueries({ queryKey });
     },
   });
 
+  // Show login prompt if user is not authenticated
+  const handleBookmarkToggle = () => {
+    if (!session) {
+      toast.error("Please log in to bookmark this website.");
+      return;
+    }
+
+    mutate();
+  };
+
   return (
     <button
-      onClick={() => mutate()}
+      onClick={handleBookmarkToggle}
       className="cursor-pointer"
       aria-label={isBookmarked ? "Unbookmark" : "Bookmark"}
     >

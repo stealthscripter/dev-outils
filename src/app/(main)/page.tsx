@@ -54,7 +54,7 @@ const accordionItems = [
 
 export default function Home() {
   return (
-    <>
+    <div className="relative">
       <div className="flex flex-col space-y-10 w-full">
         <div className="md:p-5 md:w-1/2 w-full">
           <h1 className="text-3xl font-semibold uppercase font-general">
@@ -79,7 +79,8 @@ export default function Home() {
             developer first productivity tools
           </p>
           <h2 className="text-4xl font-semibold capitalize font-general">
-            Embeddable widgets. <br /> <span className="text-spans"> Open-source.</span>
+            Embeddable widgets. <br />{" "}
+            <span className="text-spans"> Open-source.</span>
           </h2>
           <p className="text-sm mt-2 w-full md:w-[45%] text-muted-foreground">
             Discover and integrate tools built to save you time—from UI
@@ -146,10 +147,10 @@ export default function Home() {
           enhance your workflow and boost productivity with ease.
         </p>
       </div>
-
-      <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute z-1 top-11/12 left-16 -translate-x-1/2 -translate-y-1/2 blur-[250px]">
-
-      </div>
-    </>
+      <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 top-0 left-16 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
+      <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 top-0 right-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
+      <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
+      <div className="circlePosition w-[800px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 bottom-0 right-0 dark:blur-[250px] blur-[180px]" />
+    </div>
   );
 }

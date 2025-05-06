@@ -17,8 +17,11 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
+  Home,
   Monitor,
   Moon,
+  Scroll,
+  Settings,
   Sun,
   User,
 } from "lucide-react";
@@ -61,12 +64,24 @@ export default function AccountDropdown() {
         </button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="rounded-none font-quicksand mt-2 focus-visible:ring-0 focus:outline-none outline-none text-xs border-none dark:bg-zinc-900">
+      <DropdownMenuContent className="rounded-none font-quicksand mt-2 focus-visible:ring-0 focus:outline-none outline-none text-xs border-none capitalize space-y-1">
         <DropdownMenuItem className="py-1 px-2" asChild>
-          <Link href={"/resource"}>resource</Link>
+          <Link href={"/"} className="flex">
+            <Home />
+            <span>home</span>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="py-1 px-2" asChild>
-          <Link href={"/account"}>account</Link>
+          <Link href={"/resource"} className="flex">
+            <Scroll />
+            <span>resource</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="py-1 px-2" asChild>
+          <Link href={"/account"} className="flex">
+            <Settings />
+            <span>account</span>
+          </Link>
         </DropdownMenuItem>
 
         <DropdownMenuSub>

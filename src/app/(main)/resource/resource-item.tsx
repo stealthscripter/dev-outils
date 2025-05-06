@@ -60,7 +60,7 @@ export default function ResourceItem() {
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       {websites.map((website) => (
-        <div className="p-4 rounded-sm font-quicksand dark:border border-zinc-800" key={website.name}>
+        <div className="p-4 rounded-sm font-quicksand dark:border dark:border-zinc-800 border border-zinc-200" key={website.name}>
           {/* Upper section */}
           <div className="mb-3 flex justify-between">
             <div className="size-10 relative">

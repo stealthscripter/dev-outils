@@ -97,7 +97,7 @@ export function SignupForm({
 
   return (
     <div className={cn("flex flex-col", className)} {...props}>
-      <Card className="rounded-none border-none dark:bg-zinc-900 font-quicksand space-y-3">
+      <Card className="rounded-none border-none bg-transparent font-quicksand space-y-3">
         <CardHeader>
           <CardTitle>Get started</CardTitle>
           <CardDescription>

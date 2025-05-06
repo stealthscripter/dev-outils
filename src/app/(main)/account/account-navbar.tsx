@@ -22,7 +22,7 @@ export default function AccountNavBar({className}: AccountNavBarProps) {
   }
 
   return (
-    <nav className={`border border-spans w-full font-general mx-auto ${className}`}>
+    <nav className={`w-full font-general mx-auto ${className}`}>
       <ul className="flex space-x-7 cursor-pointer flex-wrap">
         {tabs.map((item) => (
           <li

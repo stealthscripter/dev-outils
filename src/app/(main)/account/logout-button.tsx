@@ -3,6 +3,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import { useQueryClient } from "@tanstack/react-query";
+import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -34,9 +35,10 @@ export default function LogoutButton() {
         queryClient.clear();
         handleLogout();
       }}
-      className="border border-spans px-3 py-1 cursor-pointer font-general font-medium"
+      className="px-3 py-2 rounded-sm cursor-pointer font-general font-medium flex gap-x-2 items-center hover:bg-zinc-900"
     >
-      {loading ? "Logging out..." : "Log out"}
+      <LogOut className="size-4" />
+      <span className="text-sm">{loading ? "Logging out..." : "Log out"}</span>
     </button>
   );
 }
