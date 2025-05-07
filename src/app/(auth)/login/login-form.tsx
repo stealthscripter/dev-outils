@@ -15,7 +15,7 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 
@@ -36,8 +36,6 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const router = useRouter();
-
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState<boolean>();
   const [loading, setLoading] = useState(false);
