@@ -1,4 +1,3 @@
-import { FeaturesSectionDemo } from "@/components/aceternity/feature-section";
 import {
   Accordion,
   AccordionContent,

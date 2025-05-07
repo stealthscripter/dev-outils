@@ -1,6 +1,5 @@
 "use client";
 import { useTheme } from "next-themes";
-import Link from "next/link";
 import { useState } from "react";
 import AccountDropdown from "./account-dropdown";
 

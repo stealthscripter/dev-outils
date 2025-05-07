@@ -1,18 +1,17 @@
 "use client";
 
+import BookmarkButton from "@/components/bookmark-button";
 import InfiniteScrollContainer from "@/components/infinite-scroll";
 import kyInstance from "@/lib/ky";
 import { websitePage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Bookmark } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import ionicon from "../../../../public/icons/ionicon.png";
 import ResourcesLoadingSkeleton, {
   InitalResourceLoadingSkeleton,
 } from "./resources-loading-skeleton";
-import { useSearchParams } from "next/navigation";
-import BookmarkButton from "@/components/bookmark-button";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function ResourceItem() {
   const searchParams = useSearchParams();
