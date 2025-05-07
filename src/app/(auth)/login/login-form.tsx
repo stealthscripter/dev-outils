@@ -169,10 +169,10 @@ export function LoginForm({
                 await authClient.signIn.social({
                   provider: "google",
                   fetchOptions: {
-                    onRequest: (ctx) => {
+                    onRequest: () => {
                       toast.loading("Authenticating...");
                     },
-                    onSuccess: (ctx) => {
+                    onSuccess: () => {
                       toast.success("Authentication Redirecting...");
                     },
                     onError: (ctx) => {
@@ -221,10 +221,10 @@ export function LoginForm({
                 await authClient.signIn.social({
                   provider: "github",
                   fetchOptions: {
-                    onRequest: (ctx) => {
+                    onRequest: () => {
                       toast.loading("Authenticating...");
                     },
-                    onSuccess: (ctx) => {
+                    onSuccess: () => {
                       toast.success("Authentication Redirecting...");
                     },
                     onError: (ctx) => {
