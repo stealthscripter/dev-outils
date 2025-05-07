@@ -1,4 +1,4 @@
-import ResourceDetailCard from "./resource-detail";
+import ResourceDetailCard from "../../../../components/resource-detail";
 
 export default async function Page() {
   return (

@@ -5,9 +5,11 @@ const prisma = new PrismaClient();
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  context: {
+    params: Promise<{ slug: string }>;
+  }
 ) {
-  const { slug } = await params;
+  const { slug } = await context.params;
 
   try {
     const website = await prisma.website.findUnique({
