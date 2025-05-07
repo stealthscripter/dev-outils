@@ -4,12 +4,10 @@ import AccountNavBar from "./account-navbar";
 import LogoutButton from "./logout-button";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-
-// src/app/account/page.tsx
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { tab?: string };
+  searchParams: Promise<{ tab?: string }>;
 }) {
   const { tab = "bookmarks" } = await searchParams;
   const session = await auth.api.getSession({ headers: await headers() });
