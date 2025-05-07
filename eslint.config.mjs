@@ -18,6 +18,8 @@ export default [
     rules: {
       // Example: Adjust or disable no-unused-vars if needed
       "@typescript-eslint/no-unused-vars": "warn", // or "off" if you want to disable it
+      "@typescript-eslint/no-explicit-any": "off"
+
     },
   },
 ];
