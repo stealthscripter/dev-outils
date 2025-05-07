@@ -30,7 +30,9 @@ export default function ResourceSidebar({
     <div className="relative">
       <aside className="">
         <div className="font-quicksand">
-          <p className="mb-5 md:ms-2 text-sm uppercase tracking-widest text-muted-foreground">categories</p>
+          <p className="mb-5 md:ms-2 text-sm uppercase tracking-widest text-muted-foreground">
+            categories
+          </p>
           <ul className="text-sm flex md:flex-col flex-wrap mb-4 gap-x-4 md:gap-x-0 md:gap-y-2 gap-y-4 md:border-l-1 dark:border-zinc-700 border-zinc-200 md:px-5">
             {categories.map((item) => (
               <li

@@ -1,4 +1,7 @@
+import { Suspense } from "react";
+import ResourceItem from "../../../components/resource-item";
 import ResourceSidebar from "../../../components/resource-sidebar";
+import { InitalResourceLoadingSkeleton } from "../../../components/resources-loading-skeleton";
 
 export default function Page() {
   return (
@@ -24,16 +27,18 @@ export default function Page() {
         {/* Sidebar */}
         <div className="md:col-span-1 col-span-full flex md:justify-center">
           <div className="sticky top-0 pt-4">
-            <ResourceSidebar />
+            <Suspense fallback="Loading filters...">
+              <ResourceSidebar />
+            </Suspense>
           </div>
         </div>
 
         {/* Scrollable list */}
         <div className="md:col-span-3 col-span-full md:max-h-screen overflow-y-auto md:p-4">
           // src/app/resource/page.tsx
-          {/* <Suspense fallback={<InitalResourceLoadingSkeleton />}>
+          <Suspense fallback={<InitalResourceLoadingSkeleton />}>
             <ResourceItem />
-          </Suspense> */}
+          </Suspense>
         </div>
       </div>
 
