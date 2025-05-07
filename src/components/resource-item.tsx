@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import BookmarkButton from "@/components/bookmark-button";
 import InfiniteScrollContainer from "@/components/infinite-scroll";
 import kyInstance from "@/lib/ky";
