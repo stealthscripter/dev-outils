@@ -9,8 +9,15 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig = [
+export default [
+  // Enable Next.js recommended rules
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
 
-export default eslintConfig;
+  {
+    // Optional: Add custom rules or overrides here
+    rules: {
+      // Example: Adjust or disable no-unused-vars if needed
+      "@typescript-eslint/no-unused-vars": "warn", // or "off" if you want to disable it
+    },
+  },
+];
