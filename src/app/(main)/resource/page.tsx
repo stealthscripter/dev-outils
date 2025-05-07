@@ -35,7 +35,6 @@ export default function Page() {
 
         {/* Scrollable list */}
         <div className="md:col-span-3 col-span-full md:max-h-screen overflow-y-auto md:p-4">
-          // src/app/resource/page.tsx
           <Suspense fallback={<InitalResourceLoadingSkeleton />}>
             <ResourceItem />
           </Suspense>
