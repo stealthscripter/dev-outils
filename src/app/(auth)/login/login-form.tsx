@@ -121,7 +121,8 @@ export function LoginForm({
                     <FormControl>
                       <Input
                         placeholder="abebe67@gmail.com"
-                        className="rounded-none focus-visible:ring-0 outline-none"
+                        className="rounded-none focus-visible:ring-0 outline-none font-quicksand placeholder:text-sm"
+                        disabled
                         {...field}
                       />
                     </FormControl>
@@ -138,7 +139,8 @@ export function LoginForm({
                     <FormControl>
                       <PasswordInput
                         placeholder="password"
-                        className="rounded-none focus-visible:ring-0 outline-none"
+                        disabled
+                        className="rounded-none focus-visible:ring-0 outline-none font-quicksand placeholder:text-sm"
                         {...field}
                       />
                     </FormControl>
@@ -147,8 +149,9 @@ export function LoginForm({
                 )}
               />
               <Button
-                disabled={loading}
+                disabled={true}
                 type="submit"
+              
                 className="w-full rounded-none cursor-pointer"
               >
                 {isPending ? "Loading..." : "Login"}

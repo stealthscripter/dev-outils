@@ -3,6 +3,9 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 import { openAPI } from "better-auth/plugins";
+import sendEmail from "./send-email";
+import EmailVerification from "../../emails/email-verification";
+import { renderVerificationEmail } from "./render-email";
 const prisma = new PrismaClient();
 export const auth = betterAuth({
   advanced: {
@@ -16,14 +19,38 @@ export const auth = betterAuth({
   }),
   session: {
     cookieCache: {
-        enabled: false,
-        maxAge: 5 * 60
+      enabled: false,
+      maxAge: 5 * 60
     }
   },
   emailAndPassword: {
     enabled: true,
-    autoSignIn: false,
+    autoSignIn: true,
     minPasswordLength: 6,
+    requireEmailVerification: true,
+  },
+  emailVerification: {
+    sendVerificationEmail: async ({ user, url, token }) => {
+      try {
+        const html = await renderVerificationEmail({
+          userFirstname: user.name ?? "User",
+          url,
+          token,
+        });
+        await sendEmail({
+          to: user.email,
+          subject: "Verify Your Email",
+          html,
+          from: "Dev Outils Support <support@devoutils.com>",
+        });
+      } catch (error) {
+        console.error("Failed to send verification email", error);
+        throw new Error("Failed to send verification email");
+      }
+    },
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
+    expiresIn: 3600 // 1 hour
   },
   socialProviders: {
     github: {

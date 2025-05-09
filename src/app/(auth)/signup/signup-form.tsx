@@ -28,6 +28,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { Terminal } from "lucide-react";
 import { toast } from "sonner";
+import { IconExclamationCircle } from "@tabler/icons-react";
 
 export function SignupForm({
   className,
@@ -124,7 +125,8 @@ export function SignupForm({
                     <FormControl>
                       <Input
                         placeholder="abebe kebede"
-                        className="rounded-none focus-visible:ring-0 outline-none"
+                        className="rounded-none focus-visible:ring-0 outline-none font-quicksand placeholder:text-sm"
+                        disabled
                         {...field}
                       />
                     </FormControl>
@@ -140,7 +142,8 @@ export function SignupForm({
                     <FormControl>
                       <Input
                         placeholder="abebe67@gmail.com"
-                        className="rounded-none focus-visible:ring-0 outline-none"
+                        disabled
+                        className="rounded-none focus-visible:ring-0 outline-none font-quicksand placeholder:text-sm"
                         {...field}
                       />
                     </FormControl>
@@ -156,7 +159,8 @@ export function SignupForm({
                     <FormControl>
                       <PasswordInput
                         placeholder="password"
-                        className="rounded-none focus-visible:ring-0 outline-none"
+                        disabled
+                        className="rounded-none focus-visible:ring-0 outline-none font-quicksand placeholder:text-sm"
                         {...field}
                       />
                     </FormControl>
@@ -173,7 +177,8 @@ export function SignupForm({
                       <Input
                         placeholder="confirm password"
                         type="password"
-                        className="rounded-none focus-visible:ring-0 outline-none"
+                        disabled
+                        className="rounded-none focus-visible:ring-0 outline-none font-quicksand placeholder:text-sm"
                         {...field}
                       />
                     </FormControl>
@@ -181,7 +186,7 @@ export function SignupForm({
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="rounded-none cursor-pointer">
+              <Button type="submit" disabled className="rounded-none cursor-pointer">
                 {loading ? "loading" : "create account"}
               </Button>
             </form>
