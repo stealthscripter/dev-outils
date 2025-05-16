@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { websiteDataInclude, WebsiteData, websitePage } from "@/lib/types";
 import { headers } from "next/headers";
 import { NextRequest } from "next/server";
+import { put } from "@vercel/blob";
 
 export async function GET(req: NextRequest) {
   try {
@@ -60,4 +61,62 @@ export async function GET(req: NextRequest) {
     console.error(error);
     return Response.json({ error: "Internal server error" }, { status: 500 });
   }
+}
+
+
+/// Admin Post
+
+export async function POST(req: NextRequest) {
+    const formData = await req.formData();
+
+    const name = formData.get("name") as string;
+    const url = formData.get("url") as string;
+    const description = formData.get("description") as string;
+    const categoryId = formData.get("categoryId") as string;
+    // Optional slug if passed from client
+    const slug = (formData.get("slug") as string) || generateSlug(name);
+
+    const icon = formData.get("icon") as File | null;
+
+    let iconUrl = null;
+
+    if (icon && icon.size > 0) {
+        // Upload to Vercel Blob
+        const buffer = Buffer.from(await icon.arrayBuffer());
+
+        const blob = await put(`icons/${slug}-${icon.name}`, buffer, {
+            contentType: icon.type,
+            access: "public",
+        });
+
+        iconUrl = blob.url; // Get public URL of uploaded file
+    }
+
+    try {
+        const website = await prisma.website.create({
+            data: {
+                name,
+                url,
+                description,
+                slug,
+                categoryId,
+                iconUrl,
+            },
+        });
+
+
+        return Response.json(website);
+    } catch (error: any) {
+        console.error(error);
+        return Response.json({ message: "Failed to create website" }, { status: 500 });
+    }
+}
+
+// Utility function to generate slug
+function generateSlug(text: string): string {
+    return text
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "")
+        .substring(0, 50);
 }

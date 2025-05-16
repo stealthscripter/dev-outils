@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { LucideMove } from "lucide-react";
 const articles = [
   {
     title: "Boost productivity with the right tools",
@@ -134,7 +135,7 @@ export default function Home() {
       </div>
 
       {/* section 4      */}
-      <div className="text-center md:mt-14 flex flex-col space-y-2 md:my-40 md:py-32 py-20 w-full">
+      <div className="text-center md:mt-14 flex flex-col space-y-2 md:my-40 md:pt-32 py-20 w-full">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold md:leading-12 font-general capitalize">
           Discover essential <br />
           <span className="text-spans">dev outils </span>
@@ -146,6 +147,7 @@ export default function Home() {
           enhance your workflow and boost productivity with ease.
         </p>
       </div>
+
       <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full md:absolute hidden -z-1 top-0 left-16 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
       <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 top-0 right-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
       <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />

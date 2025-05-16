@@ -8,16 +8,18 @@ datasource db {
 }
 
 model User {
-  id            String     @id
+  id            String   @id
   name          String
-  email         String     @unique
+  email         String   @unique
   emailVerified Boolean
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
-  accounts      Account[]
-  bookmarks     Bookmark[]
-  sessions      Session[]
+  role          Role     @default(USER)
+
+  accounts  Account[]
+  bookmarks Bookmark[]
+  sessions  Session[]
 
   @@map("user")
 }
@@ -53,6 +55,12 @@ model Account {
   user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("account")
+}
+
+enum Role {
+  USER
+  ADMIN
+  MODERATOR
 }
 
 model Verification {

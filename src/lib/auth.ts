@@ -2,11 +2,23 @@ import { PrismaClient } from "@prisma/client";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
-import { openAPI } from "better-auth/plugins";
+import { customSession, openAPI } from "better-auth/plugins";
 import sendEmail from "./send-email";
 import EmailVerification from "../../emails/email-verification";
 import { renderVerificationEmail } from "./render-email";
 const prisma = new PrismaClient();
+export async function findUserRoles(userId: string): Promise<string> {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { role: true },
+  });
+
+  if (!user) {
+    throw new Error(`User with ID ${userId} not found.`);
+  }
+
+  return user.role;
+}
 export const auth = betterAuth({
   advanced: {
     ipAddress: {
@@ -62,5 +74,23 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     },
   },
-  plugins: [nextCookies(), openAPI()]
+  plugins: [nextCookies(), openAPI(), customSession(async ({ user, session }) => {
+    // Await the role lookup
+    const role = await findUserRoles(session.userId);
+
+    // Extend the session and user objects
+    return {
+      session: {
+        ...session,
+        user: {
+          ...user,
+          role, // add role to user object inside session
+        },
+      },
+      user: {
+        ...user,
+        role, // add role to the user object directly
+      },
+    };
+  }),]
 });
