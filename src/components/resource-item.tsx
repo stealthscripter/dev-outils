@@ -58,7 +58,7 @@ export default function ResourceItem() {
 
   return (
     <InfiniteScrollContainer
-      className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-x-4 gap-y-6 md:gap-y-5 items-center"
+      className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-x-4 gap-y-6 md:gap-y-5 md:items-stretch items-center"
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
     >
       {websites.map((website) => (

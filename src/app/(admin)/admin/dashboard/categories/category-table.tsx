@@ -75,26 +75,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
-import AddResourceViewer from "./add-resource";
-import ResourceDetail from "./resource-detail";
 import { ResourceDeleteAlert } from "@/components/resource-delete-alert";
+import AddResourceViewer from "../resources/add-resource";
+import AddCategoryViewer from "./add-category";
 
 export const schema = z.object({
   id: z.string(),
-  url: z.string(),
-  slug: z.string(),
-  imageUrl: z.string().nullable().optional(),
-  description: z.string().nullable(),
-  iconUrl: z.string().nullable().optional(), // handle null or missing values
-  categoryId: z.string(),
-  createdAt: z.coerce.date(), // accepts both Date and ISO string
-  updatedAt: z.coerce.date(), // accepts both Date and ISO string
   name: z.string(),
-  category: z.object({
-    name: z.string(), // ✅ This is what we'll use in the table
-  }),
+  slug: z.string(),
+  createdAt: z.date(),
   _count: z.object({
-    bookmarks: z.number(),
+    websites: z.number(),
   }),
 });
 
@@ -151,49 +142,51 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: "id",
+    header: "ID",
+    cell: ({ row }) => {
+      return (
+        <h2 className="text-muted-foreground">
+          {row.original.id ? row.original.id.slice(0, 20) + "..." : "-"}
+        </h2>
+      );
+    },
+  },
+  {
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => {
-      return <ResourceDetail item={row.original} />;
+      return <h1>{row.original.name}</h1>;
     },
     enableHiding: false,
-  },
-  {
-    accessorKey: "url",
-    header: "Url",
-    cell: ({ row }) => (
-      <div className="w-32">
-        <Badge variant="outline" className="text-muted-foreground px-1.5">
-          {row.original.url}
-        </Badge>
-      </div>
-    ),
   },
   {
     accessorKey: "slug",
     header: "Slug",
     cell: ({ row }) => (
-      <Badge variant="outline" className="text-muted-foreground px-1.5">
-        {row.original.slug}
-      </Badge>
+      <div className="w-32">
+        <Badge
+          variant="outline"
+          className="text-muted-foreground px-1.5 text-sm"
+        >
+          {row.original.slug}
+        </Badge>
+      </div>
     ),
   },
   {
-    accessorKey: "_count.bookmarks",
-    header: "Bookmark Count",
-    cell: ({ row }) => (
-      <div className="ms-5">{row.original._count.bookmarks}</div>
-    ),
-  },
-  {
-    accessorKey: "category.name",
-    header: "Category",
-    cell: ({ row }) => <div className="">{row.original.category.name}</div>,
+    accessorKey: "_count.websites",
+    header: "Websites",
+    cell: ({ row }) => <div>{row.original._count.websites}</div>,
   },
   {
     accessorKey: "createdAt",
     header: "Created At",
-    cell: ({ row }) => <div>{row.original.createdAt.toDateString()}</div>,
+    cell: ({ row }) => (
+      <p className="text-muted-foreground">
+        {row.original.createdAt.toDateString()}
+      </p>
+    ),
   },
   {
     id: "actions",
@@ -376,8 +369,8 @@ export function DataTable({
                   );
                 })}
             </DropdownMenuContent>
+            <AddCategoryViewer />
           </DropdownMenu>
-          <AddResourceViewer />
         </div>
       </div>
       <TabsContent

@@ -2,8 +2,17 @@ import { Suspense } from "react";
 import ResourceItem from "../../../components/resource-item";
 import ResourceSidebar from "../../../components/resource-sidebar";
 import { InitalResourceLoadingSkeleton } from "../../../components/resources-loading-skeleton";
-
-export default function Page() {
+import { prisma } from "@/lib/prisma";
+export const dynamic = 'force-dynamic';
+export default async function Page() {
+  const categories = await prisma.category.findMany({
+      orderBy: {name: "asc"},
+      select: {
+        name: true,
+        slug: true
+      }
+  })
+   const withAll = [{ name: "All", slug: "all" }, ...categories];
   return (
     <div className="relative">
       {/* Header Section */}
@@ -28,7 +37,7 @@ export default function Page() {
         <div className="md:col-span-1 col-span-full flex md:justify-center">
           <div className="sticky top-0 pt-4">
             <Suspense fallback="Loading filters...">
-              <ResourceSidebar />
+              <ResourceSidebar categories={withAll} />
             </Suspense>
           </div>
         </div>

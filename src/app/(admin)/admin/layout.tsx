@@ -1,10 +1,10 @@
+"use server";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
 import { headers } from "next/headers";
-import { redirect, unauthorized } from "next/navigation";
+import { unauthorized } from "next/navigation";
 
 export default async function layout({
   children,

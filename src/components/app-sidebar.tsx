@@ -57,7 +57,7 @@ const data = {
     },
     {
       title: "Category",
-      url: "/admin/categories",
+      url: "/admin/dashboard/categories",
       icon: IconFolder,
     },
     {

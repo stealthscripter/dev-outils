@@ -17,11 +17,11 @@ import { useState } from "react";
 import { IconLoader } from "@tabler/icons-react";
 
 interface ResourceDeleteAlertProps {
-  id: string;
+  slug: string;
   children: React.ReactNode;
 }
 
-export function ResourceDeleteAlert({ id, children }: ResourceDeleteAlertProps) {
+export function ResourceDeleteAlert({ slug, children }: ResourceDeleteAlertProps) {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
   const [open, setOpen] = useState(false); // To manually control dialog open/close
@@ -29,7 +29,7 @@ export function ResourceDeleteAlert({ id, children }: ResourceDeleteAlertProps) 
   const handleDelete = async () => {
     setIsDeleting(true);
     try {
-      const res = await fetch(`/api/website/${id}`, {
+      const res = await fetch(`/api/website/${slug}`, {
         method: "DELETE",
       });
 

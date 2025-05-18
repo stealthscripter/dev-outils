@@ -1,19 +1,20 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-const categories = [
-  { title: "All", slug: "all" },
-  { title: "Font & Typography", slug: "font-typography" },
-  { title: "Icon Tools", slug: "icon-tools" },
-  { title: "Design Inspiration", slug: "design-inspiration" },
-];
+
+interface Category {
+  name: string;
+  slug: string;
+}
 
 interface ResourceNavigationProps {
   className?: string;
+  categories: Category[]
 }
 
 export default function ResourceSidebar({
   className,
+  categories
 }: ResourceNavigationProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -44,7 +45,7 @@ export default function ResourceSidebar({
                 }`}
                 onClick={() => handleFilter(item.slug)}
               >
-                {item.title}
+                {item.name}
               </li>
             ))}
           </ul>
