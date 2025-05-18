@@ -85,7 +85,8 @@ export default function ResourceItem() {
           {/* Website details */}
           <div className="">
             <Link
-              href={`resource/${website.slug}`}
+              href={website.url}
+              target="_blank"
               className="text-lg font-medium hover:underline w-fit cursor-pointer font-general capitalize"
             >
               {website.name}

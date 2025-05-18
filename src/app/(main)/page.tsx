@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { LucideMove } from "lucide-react";
+
 const articles = [
   {
     title: "Boost productivity with the right tools",

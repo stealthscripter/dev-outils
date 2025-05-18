@@ -1,5 +1,9 @@
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { SignupForm } from "./signup-form";
+export const metadata = {
+  title: "SignUp",
+};
+
 
 export default async function Page() {
   return (

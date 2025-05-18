@@ -4,6 +4,11 @@ import AccountNavBar from "./account-navbar";
 import LogoutButton from "./logout-button";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { AccountTabs } from "./account-tabs";
+export const metadata = {
+  title: "Account",
+};
+
 export default async function Page({
   searchParams,
 }: {
@@ -31,22 +36,11 @@ export default async function Page({
       </div>
 
       <div className="w-full md:px-72 mt-8 px-5">
-        <AccountNavBar />
-        {tab === "bookmarks" ? (
-          <AccountBookmark userId={session.user.id} key={tab} />
-        ) : null}
-
-        {tab === "saved" ? (
-          <div className="mt-10 text-center font-quicksand">
-            <h1 className="text-muted-foreground">
-              A saved website feature will be introduced soon
-            </h1>
-          </div>
-        ) : null}
+        <AccountTabs userId={session.user.id} />
       </div>
 
       <div className="circlePosition w-[420px] h-[300px] bg-[#b891e8] rounded-full absolute -z-1 -top-24 left-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
-      {/* <div className="circlePosition w-[420px] h-[300px] bg-[#b891e8] rounded-full absolute -z-1 -bottom-24 right-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" /> */}
+      {/* <div className="circlePosition w-[420px] h-[300px] bg-[#b891e8] rounded-full absolute -z-1 -bottom-24 right-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[70px] blur-[100px]" /> */}
     </div>
   );
 }

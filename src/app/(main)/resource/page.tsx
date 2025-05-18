@@ -4,6 +4,12 @@ import ResourceSidebar from "../../../components/resource-sidebar";
 import { InitalResourceLoadingSkeleton } from "../../../components/resources-loading-skeleton";
 import { prisma } from "@/lib/prisma";
 export const dynamic = 'force-dynamic';
+
+export const metadata = {
+  title: "Resource",
+};
+
+
 export default async function Page() {
   const categories = await prisma.category.findMany({
       orderBy: {name: "asc"},
