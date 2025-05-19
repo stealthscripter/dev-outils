@@ -11,6 +11,7 @@ import ionicon from "../../public/icons/ionicon.png";
 import ResourcesLoadingSkeleton, {
   InitalResourceLoadingSkeleton,
 } from "./resources-loading-skeleton";
+import clsx from "clsx";
 
 export default function ResourceItem() {
   const searchParams = useSearchParams();
@@ -57,10 +58,7 @@ export default function ResourceItem() {
   }
 
   return (
-    <InfiniteScrollContainer
-      className="col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-x-4 gap-y-6 md:gap-y-5 md:items-stretch items-center"
-      onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
-    >
+    <div className="relative col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-x-4 gap-y-6 md:gap-y-5 md:items-stretch items-center pb-20">
       {websites.map((website) => (
         <div
           className="p-4 rounded-sm font-quicksand dark:border dark:border-zinc-800 border border-zinc-200"
@@ -100,8 +98,19 @@ export default function ResourceItem() {
           <div className="mt-2">{/* <Tag tags={website.tags ?? []} /> */}</div>
         </div>
       ))}
+      {hasNextPage && !isFetchingNextPage && (
+        <div className="absolute bottom-0 w-fit left-0 right-0 flex justify-center border hover:outline py-2 bg-opacity-80 dark:bg-opacity-80">
+          <button
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+            className={clsx("w-full max-w-xs px-5 cursor-pointer")}
+          >
+            {isFetchingNextPage ? "Loading..." : "Load More"}
+          </button>
+        </div>
+      )}
 
       {isFetchingNextPage && <ResourcesLoadingSkeleton />}
-    </InfiniteScrollContainer>
+    </div>
   );
 }

@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
     const searchParams = req.nextUrl.searchParams;
     const cursor = searchParams.get("cursor") || undefined;
     const categorySlug = searchParams.get("category") || "all";
-    const pageSize = 10;
+    const pageSize = 2;
 
     const session = await auth.api.getSession({
       headers: await headers(),
