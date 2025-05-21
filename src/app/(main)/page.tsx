@@ -1,10 +1,12 @@
+import Announcement from "@/components/announcement";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { LucideMove } from "lucide-react";
+import { LucideMove, RocketIcon } from "lucide-react";
+import Link from "next/link";
 
 const articles = [
   {
@@ -70,6 +72,14 @@ export default function Home() {
             your workflow or at least look like you did. Your future self will
             thank you. Probably.
           </p>
+          {/* cta button */}
+          <Link href={"/resource"}>
+            <button className="relative md:mt-10 mt-14 inline-flex items-center cursor-pointer gap-2 justify-center px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-spans dark:to-slate-900 to-indigo-300 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
+              <RocketIcon className="w-5 h-5 relative z-10" />
+              <span className="relative z-10">Get Started</span>
+              <span className="absolute inset-0 bg-white dark:bg-black opacity-10 transition-opacity duration-300 group-hover:opacity-20 rounded-full"></span>
+            </button>
+          </Link>
         </div>
       </div>
       {/* section 2 */}
@@ -148,7 +158,6 @@ export default function Home() {
           enhance your workflow and boost productivity with ease.
         </p>
       </div>
-
       <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full md:absolute hidden -z-1 top-0 left-16 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
       <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 top-0 right-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
       <div className="circlePosition w-[420px] h-[400px] bg-[#b891e8] rounded-full absolute -z-1 top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 dark:blur-[250px] blur-[180px]" />
