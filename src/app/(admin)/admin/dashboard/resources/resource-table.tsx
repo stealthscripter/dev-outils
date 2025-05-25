@@ -47,6 +47,7 @@ import {
 import * as React from "react";
 import { z } from "zod";
 
+import { ResourceDeleteAlert } from "@/components/resource-delete-alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -55,8 +56,7 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
 import {
@@ -77,7 +77,6 @@ import {
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import AddResourceViewer from "./add-resource";
 import ResourceDetail from "./resource-detail";
-import { ResourceDeleteAlert } from "@/components/resource-delete-alert";
 
 export const schema = z.object({
   id: z.string(),
@@ -210,9 +209,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-32">
-          <DropdownMenuItem>Edit</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive">
+          <DropdownMenuItem variant="destructive" asChild>
             <ResourceDeleteAlert slug={row.original.slug}>
               <Button
                 variant="ghost"

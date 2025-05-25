@@ -7,7 +7,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import ionicon from "../../public/icons/ionicon.png";
+import noIcon from "../../public/icons/no-icon.png";
 import ResourcesLoadingSkeleton, {
   InitalResourceLoadingSkeleton,
 } from "./resources-loading-skeleton";
@@ -68,7 +68,7 @@ export default function ResourceItem() {
           <div className="mb-3 flex justify-between">
             <div className="size-10 relative">
               <Image
-                src={website.iconUrl || ionicon}
+                src={website.iconUrl || noIcon}
                 alt="Ionicons Logo"
                 fill
                 className="object-cover"
